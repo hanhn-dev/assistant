@@ -1,0 +1,31 @@
+services:
+  # api:
+  #   image: api
+  #   build:
+  #     context: apps/api
+  #     dockerfile: ./Dockerfile
+  #   environment:
+  #     NODE_ENV: production
+  #   ports:
+  #     - 3001:3001
+  # web:
+  #   image: web
+  #   build:
+  #     context: apps/web
+  #     dockerfile: ./Dockerfile
+  #   environment:
+  #     NODE_ENV: production
+  #   ports:
+  #     - 3000:3000
+  db:
+    image: postgres:16 # Specifies the PostgreSQL image and version
+    container_name: a7t-db
+    restart: always
+    environment:
+      POSTGRES_USER: sa # Sets the database username
+      POSTGRES_PASSWORD: 123456 # Sets the database password
+      POSTGRES_DB: a7t # Sets the database name
+    volumes:
+      - ./packages/database/db:/var/lib/postgresql/data # Persists data to a local directory
+    ports:
+      - "5433:5432" # Maps host port 5433 to container port 5432
